@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+       body {
+            display: flex;
+            flex-direction: column;  
+            justify-content: center; 
+            align-items: center;    
+            height: 100vh;          
+            margin: 0;               
+        }
+        .buttons-container {
+            display: flex;
+            gap: 10px;               
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 200% !important;
+            margin: 7%;
+            background-color: red;
+        }
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+        }
+        h2 {
+            text-align: center;
+            font-size: 3rem;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <img src="data:image/jpeg;base64,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">
+    <div>
+        <h2>Stop Watch</h2>
+    </div>
+    <h1>00:00:00.000</h1>
+    <div class="buttons-container">
+        <button class="btn btn-primary" onclick="startWatch()">Start</button>
+        <button class="btn btn-danger" onclick="pauseWatch()">Pause</button>
+        <button class="btn btn-warning" onclick="restartWatch()">Reset</button>
+    </div>
+
+    <script>
+        let working = false;
+        let startTime;
+        let elapsedTime = 0;
+        let timer;
+
+        function updateTime() {
+            const time = Date.now() - startTime + elapsedTime;
+            const milliseconds = Math.floor(time % 1000);
+            const seconds = Math.floor((time / 1000) % 60);
+            const minutes = Math.floor((time / 1000 / 60) % 60);
+            const hours = Math.floor(time / 1000 / 60 / 60);
+
+            document.querySelector("h1").innerText =
+                `${String(hours).padStart(2, '0')}:` +
+                `${String(minutes).padStart(2, '0')}:` +
+                `${String(seconds).padStart(2, '0')}.` +
+                `${String(milliseconds).padStart(3, '0')}`;
+        }
+
+        function startWatch() {
+            if (!working) {
+                startTime = Date.now();
+                timer = setInterval(updateTime, 1);
+                working = true;
+            }
+        }
+
+        function pauseWatch() {
+            if (working) {
+                clearInterval(timer);
+                elapsedTime += Date.now() - startTime; 
+                working = false;
+            }
+        }
+
+        function restartWatch() {
+            clearInterval(timer);
+            elapsedTime = 0; 
+            working = false;
+            document.querySelector("h1").innerText = "00:00:00.000";
+        }
+    </script>
+</body>
+</html>
